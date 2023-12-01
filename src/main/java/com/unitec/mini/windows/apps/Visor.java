@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.unitec.mini.windows.apps;
 
@@ -12,16 +12,19 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author leonel
+ * @author Kenny
  */
-public class PlayerApp extends javax.swing.JInternalFrame  implements AppInterface {
+public class Visor extends javax.swing.JFrame{
+
     int cont= 1; 
     ImageIcon Imagen[]= new ImageIcon[6];
     
+    
+    
     /**
-     * Creates new form Player
+     * Creates new form Visor
      */
-    public PlayerApp() {
+    public Visor() {
         initComponents();
         this.setTitle("Visor de imagenes");
         for (int i = 1; i < 6; i++) {
@@ -33,12 +36,6 @@ public class PlayerApp extends javax.swing.JInternalFrame  implements AppInterfa
        actualizarImagen(Imagen4,cont+2,150,124);
     }
 
-    public void setComponents(){
-                                                                           //cambiar url
-        ImageIcon appIcon = new ImageIcon(getClass().getResource("/Users/Kenny/NetBeansProjects/mini-windows/src/main/resources/imagnes.png"));
-        this.setFrameIcon(appIcon);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,6 +45,8 @@ public class PlayerApp extends javax.swing.JInternalFrame  implements AppInterfa
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
         jLabel1 = new javax.swing.JLabel();
         Atras = new javax.swing.JButton();
         Imagen1 = new javax.swing.JLabel();
@@ -55,12 +54,14 @@ public class PlayerApp extends javax.swing.JInternalFrame  implements AppInterfa
         Imagen2 = new javax.swing.JLabel();
         Imagen3 = new javax.swing.JLabel();
         Siguiente = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
-        setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
-        setTitle("Media Player");
+        jScrollPane1.setViewportView(jTree1);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
@@ -92,6 +93,18 @@ public class PlayerApp extends javax.swing.JInternalFrame  implements AppInterfa
             }
         });
 
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("Abrir imagen");
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,7 +117,7 @@ public class PlayerApp extends javax.swing.JInternalFrame  implements AppInterfa
                 .addComponent(Imagen2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(Imagen3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(Imagen4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(Siguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,7 +132,7 @@ public class PlayerApp extends javax.swing.JInternalFrame  implements AppInterfa
             .addGroup(layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -138,88 +151,39 @@ public class PlayerApp extends javax.swing.JInternalFrame  implements AppInterfa
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//ANCHO 390 LARGO 610
     private void AtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AtrasMouseClicked
 
     }//GEN-LAST:event_AtrasMouseClicked
 
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
         // TODO add your handling code here:
-        cont--;
+    cont--;
 
-        if (cont < 0) {
-            cont = Imagen.length - 1;  // Reinicia el contador al llegar a -1
-        }
+    if (cont < 0) {
+     cont = Imagen.length - 1;  // Reinicia el contador al llegar a -1
+    }
 
-        actualizarImagen(jLabel1,cont,390,610);
+    actualizarImagen(jLabel1,cont,390,610);
 
-        // Actualizar Imagen1
-        int indiceImagen1 = (cont - 2 + Imagen.length) % Imagen.length;
-        actualizarImagen(Imagen1, indiceImagen1, 90, 90);
+    // Actualizar Imagen1
+    int indiceImagen1 = (cont - 2 + Imagen.length) % Imagen.length;
+    actualizarImagen(Imagen1, indiceImagen1, 90, 90);
 
-        // Actualizar Imagen2 con dimensiones específicas (largo: 124, ancho: 150)
-        int indiceImagen2 = (cont - 1 + Imagen.length) % Imagen.length;
-        actualizarImagen(Imagen2, indiceImagen2, 150, 124);
+    // Actualizar Imagen2 con dimensiones específicas (largo: 124, ancho: 150)
+    int indiceImagen2 = (cont - 1 + Imagen.length) % Imagen.length;
+    actualizarImagen(Imagen2, indiceImagen2, 150, 124);
 
-        // Actualizar Imagen3 con dimensiones específicas (largo: 124, ancho: 150)
-        int indiceImagen3 = cont+1 % Imagen.length;
-        actualizarImagen(Imagen3, indiceImagen3, 150, 124);
+    // Actualizar Imagen3 con dimensiones específicas (largo: 124, ancho: 150)
+    int indiceImagen3 = cont+1 % Imagen.length;
+    actualizarImagen(Imagen3, indiceImagen3, 150, 124);
 
-        // Actualizar Imagen4
-        int indiceImagen4 = (cont +2) % Imagen.length;
-        actualizarImagen(Imagen4, indiceImagen4, 90, 90);
+    // Actualizar Imagen4
+    int indiceImagen4 = (cont +2) % Imagen.length;
+    actualizarImagen(Imagen4, indiceImagen4, 90, 90);
+
     }//GEN-LAST:event_AtrasActionPerformed
-
-    private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
-        // TODO add your handling code here:
-        if (cont == 6) {
-            cont = 0;  // Reinicia el contador al llegar a 5
-        }
-        cont++;
-
-        actualizarImagen(jLabel1,cont,390,610);
-
-        int indiceImagen1 = (cont - 2 + Imagen.length) % Imagen.length;
-        if (indiceImagen1 >= 0 && indiceImagen1 < Imagen.length && Imagen[indiceImagen1] != null) {
-            Image imagenRedimensionada1 = redimensionarImagen(Imagen[indiceImagen1].getImage(), 90, 90);
-            Imagen1.setIcon(new ImageIcon(imagenRedimensionada1));
-        } else {
-            // Manejar el caso de índice fuera de límites o imagen nula
-            Imagen1.setIcon(null);
-        }
-
-        // Redimensiona la imagen antes de establecerla como icono para Imagen2
-        int indiceImagen2 = (cont - 1 + Imagen.length) % Imagen.length; // Manejar el límite inferior
-        if (indiceImagen2 >= 0 && indiceImagen2 < Imagen.length && Imagen[indiceImagen2] != null) {
-            Image imagenRedimensionada2 = redimensionarImagen(Imagen[indiceImagen2].getImage(), 150, 124);
-            Imagen2.setIcon(new ImageIcon(imagenRedimensionada2));
-        } else {
-            // Manejar el caso de índice fuera de límites o imagen nula
-            Imagen2.setIcon(null);
-        }
-
-        //imagen central
-        // Redimensiona la imagen antes de establecerla como icono para Imagen3
-        int indiceImagen3 = (cont + 1) % Imagen.length; // Manejar el límite superior
-        if (indiceImagen3 >= 0 && indiceImagen3 < Imagen.length && Imagen[indiceImagen3] != null) {
-            Image imagenRedimensionada3 = redimensionarImagen(Imagen[indiceImagen3].getImage(), 150, 124);
-            Imagen3.setIcon(new ImageIcon(imagenRedimensionada3));
-        } else {
-            // Manejar el caso de índice fuera de límites o imagen nula
-            Imagen3.setIcon(null);
-        }
-
-        // Redimensiona la imagen antes de establecerla como icono para Imagen4
-        int indiceImagen4 = (cont + 2) % Imagen.length; // Manejar el límite superior
-        if (indiceImagen4 >= 0 && indiceImagen4 < Imagen.length && Imagen[indiceImagen4] != null) {
-            Image imagenRedimensionada4 = redimensionarImagen(Imagen[indiceImagen4].getImage(), 90, 90);
-            Imagen4.setIcon(new ImageIcon(imagenRedimensionada4));
-        } else {
-            // Manejar el caso de índice fuera de límites o imagen nula
-            Imagen4.setIcon(null);
-        }
-    }//GEN-LAST:event_SiguienteActionPerformed
-        
+    
 private void actualizarImagen(JLabel label, int indice, int ancho, int alto) {
     if (indice >= 0 && indice < Imagen.length && Imagen[indice] != null) {
         Image imagenOriginal = Imagen[indice].getImage();
@@ -239,16 +203,92 @@ private Image redimensionarImagen(Image img, int ancho, int alto) {
     return nuevaImagen;
 }
 
-   
-    @Override
-    public void closeFrame() {
-        try {
-            this.setClosed(true);
-        } catch (Exception e) {
-            e.printStackTrace();
+    
+    private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
+        // TODO add your handling code here:
+      if (cont == 6) {
+        cont = 0;  // Reinicia el contador al llegar a 5
         }
-    }
+    cont++;
 
+    actualizarImagen(jLabel1,cont,390,610);
+
+    int indiceImagen1 = (cont - 2 + Imagen.length) % Imagen.length; 
+        if (indiceImagen1 >= 0 && indiceImagen1 < Imagen.length && Imagen[indiceImagen1] != null) {
+         Image imagenRedimensionada1 = redimensionarImagen(Imagen[indiceImagen1].getImage(), 90, 90);
+         Imagen1.setIcon(new ImageIcon(imagenRedimensionada1));
+        } else {
+        // Manejar el caso de índice fuera de límites o imagen nula
+         Imagen1.setIcon(null);
+        }
+
+        // Redimensiona la imagen antes de establecerla como icono para Imagen2
+    int indiceImagen2 = (cont - 1 + Imagen.length) % Imagen.length; // Manejar el límite inferior
+        if (indiceImagen2 >= 0 && indiceImagen2 < Imagen.length && Imagen[indiceImagen2] != null) {
+         Image imagenRedimensionada2 = redimensionarImagen(Imagen[indiceImagen2].getImage(), 150, 124);
+         Imagen2.setIcon(new ImageIcon(imagenRedimensionada2));
+        } else {
+        // Manejar el caso de índice fuera de límites o imagen nula
+         Imagen2.setIcon(null);
+        }
+
+        //imagen central
+        // Redimensiona la imagen antes de establecerla como icono para Imagen3
+        int indiceImagen3 = (cont + 1) % Imagen.length; // Manejar el límite superior
+        if (indiceImagen3 >= 0 && indiceImagen3 < Imagen.length && Imagen[indiceImagen3] != null) {
+         Image imagenRedimensionada3 = redimensionarImagen(Imagen[indiceImagen3].getImage(), 150, 124);
+         Imagen3.setIcon(new ImageIcon(imagenRedimensionada3));
+        } else {
+         // Manejar el caso de índice fuera de límites o imagen nula
+         Imagen3.setIcon(null);
+        }
+
+        // Redimensiona la imagen antes de establecerla como icono para Imagen4
+        int indiceImagen4 = (cont + 2) % Imagen.length; // Manejar el límite superior
+        if (indiceImagen4 >= 0 && indiceImagen4 < Imagen.length && Imagen[indiceImagen4] != null) {
+         Image imagenRedimensionada4 = redimensionarImagen(Imagen[indiceImagen4].getImage(), 90, 90);
+         Imagen4.setIcon(new ImageIcon(imagenRedimensionada4));
+        } else {
+         // Manejar el caso de índice fuera de límites o imagen nula
+         Imagen4.setIcon(null);
+        }
+    }//GEN-LAST:event_SiguienteActionPerformed
+
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Visor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Visor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Visor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Visor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Visor().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras;
@@ -258,5 +298,11 @@ private Image redimensionarImagen(Image img, int ancho, int alto) {
     private javax.swing.JLabel Imagen4;
     private javax.swing.JButton Siguiente;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }
